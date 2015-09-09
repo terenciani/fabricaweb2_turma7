@@ -1,12 +1,20 @@
-package br.com.fabricadeprogramador.entidade;
+package br.com.fabricadeprogramador.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
+import br.com.fabricadeprogramador.entidade.Usuario;
+
+@Repository
 public class UsuarioDAO {
-	// Depen
+	
+
+	@PersistenceContext
 	EntityManager em;
 
 	public UsuarioDAO(EntityManager em) {
@@ -14,10 +22,12 @@ public class UsuarioDAO {
 	}
 
 	// Insert ou Update
-	public void salvar(Usuario usuario) {
+	public Usuario salvar(Usuario usuario) {
 		em.getTransaction().begin();
-		em.merge(usuario);
+		Usuario usuarioPersistido = em.merge(usuario);
 		em.getTransaction().commit();
+		
+		return usuarioPersistido;
 	}
 
 	public void excluir(Usuario usuario) {
