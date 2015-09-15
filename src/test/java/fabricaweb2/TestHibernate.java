@@ -2,12 +2,11 @@ package fabricaweb2;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
-import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import br.com.fabricadeprogramador.dao.UsuarioDAO;
+import br.com.fabricadeprogramador.dao.UsuarioDAOJPA;
 import br.com.fabricadeprogramador.entidade.Usuario;
 
 public class TestHibernate {
@@ -31,7 +30,7 @@ public class TestHibernate {
 		usu.setLogin("vir");
 		usu.setSenha("123456");
 
-		UsuarioDAO usuarioDAO = new UsuarioDAO(em);
+		UsuarioDAO usuarioDAO = new UsuarioDAOJPA(em);
 
 		//usuarioDAO.salvar(usu);
 

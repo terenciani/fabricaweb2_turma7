@@ -12,37 +12,45 @@ import javax.persistence.Id;
 public class Usuario implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
-	@Column(name="nomeusu")
+	@Column(name = "nomeusu")
 	private String nome;
 	private String login;
 	private String senha;
-	
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getLogin() {
 		return login;
 	}
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
+
 	public String getSenha() {
 		return senha;
 	}
+
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -53,6 +61,7 @@ public class Usuario implements Serializable {
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -84,10 +93,10 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", login=" + login
-				+ ", senha=" + senha + "]";
+		return "Usuario [id=" + id + ", nome=" + nome + ", login=" + login + ", senha=" + senha + "]";
 	}
 
 }
