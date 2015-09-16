@@ -9,4 +9,5 @@ public interface UsuarioDAO {
 	public void excluir(Usuario usuario) throws DAOException;
 	public Usuario buscarPorId(int id);
 	public List<Usuario> buscarTodos();
+	public Usuario buscarPorLogin(String login);
 }

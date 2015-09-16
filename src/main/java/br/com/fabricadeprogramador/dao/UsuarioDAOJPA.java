@@ -3,6 +3,7 @@ package br.com.fabricadeprogramador.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.fabricadeprogramador.entidade.Usuario;
 
 @Repository
-public class UsuarioDAOJPA implements UsuarioDAO{
+public class UsuarioDAOJPA implements UsuarioDAO {
 
 	@PersistenceContext
 	EntityManager em;
@@ -36,7 +37,7 @@ public class UsuarioDAOJPA implements UsuarioDAO{
 		try {
 			em.remove(usuario);
 		} catch (IllegalArgumentException e) {
-			throw new DAOException ("Não foi possível excluir", e);
+			throw new DAOException("Não foi possível excluir", e);
 		}
 	}
 
@@ -47,5 +48,20 @@ public class UsuarioDAOJPA implements UsuarioDAO{
 	public List<Usuario> buscarTodos() {
 		Query q = em.createQuery("select u from Usuario u");
 		return q.getResultList();
+	}
+
+	@Override
+	public Usuario buscarPorLogin(String login) {
+		Usuario usuario;
+		try {
+			Query q = em.createQuery("select u from Usuario u where u.login=:loginParam");
+			q.setParameter("loginParam", login);
+			q.setMaxResults(1);
+			usuario = (Usuario) q.getSingleResult();
+		} catch (NoResultException e) {
+			usuario = null;
+		}
+
+		return usuario;
 	}
 }

@@ -21,7 +21,7 @@ import br.com.fabricadeprogramador.entidade.Usuario;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "file:src/main/resources/META-INF/springbeans.xml")
-@TransactionConfiguration(transactionManager = "transactionManager")
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class TestUsuarioDAO2 {
 
 	@Autowired
@@ -94,4 +94,22 @@ public class TestUsuarioDAO2 {
 		assertEquals(null, usuExcluido);
 	}
 
+	@Test
+	@Transactional
+	public void testBuscarPorLogin() throws DAOException {
+		// Criar um novo usuario
+		Usuario usu = new Usuario();
+		usu.setNome("test");
+		usu.setLogin("test");
+		usu.setSenha("test");
+
+		// Salvar Usuario de teste
+		Usuario usuSalvo = usuarioDAO.salvar(usu);
+
+		// Busca por Id
+		Usuario usuPersistido = usuarioDAO.buscarPorLogin(usu.getLogin());
+
+		// Define correto se o objeto não for encontrado
+		assertNotNull(usuPersistido);
+	}
 }
