@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<head>
+<meta charset="UTF-8" />
+<title>Fabrica WEB</title>
+</head>
+<body>
+
+	<h:form>
+		Nome:
+		<h:inputText value="#{usuarioController.usuario.nome}" />
+		Login: 
+		<h:inputText value="#{usuarioController.usuario.login}" />
+		Senha:
+		<h:inputText value="#{usuarioController.usuario.senha}" />
+
+		<h:commandButton value="Salvar"
+			actionListener="#{usuarioController.salvar}" />
+	</h:form>
+
+	<h:form>
+		<h:dataTable value="#{usuarioController.usuarioList}" var="usu" border="1"> 
+			<f:facet name="header">
+			Lista de usuarios
+			</f:facet>
+			<h:column>#{usu.id}</h:column>
+			<h:column>#{usu.nome}</h:column>
+			<h:column>#{usu.login}</h:column>
+		</h:dataTable>
+
+	</h:form>
+</body>
+</html>

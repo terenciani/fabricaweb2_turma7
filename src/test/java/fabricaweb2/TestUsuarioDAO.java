@@ -27,7 +27,8 @@ public class TestUsuarioDAO {
 
 	@Before
 	public void init() {
-		ctx = new ClassPathXmlApplicationContext("file:src/main/resources/META-INF/springbeans.xml");
+		
+		ctx = new  ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/springbeans.xml");
 		EntityManagerFactory emf = (EntityManagerFactory) ctx.getBean("entityManagerFactory");
 		em = emf.createEntityManager();
 		usuarioDAO = new UsuarioDAOJPA(em);

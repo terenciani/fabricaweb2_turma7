@@ -20,7 +20,7 @@ import br.com.fabricadeprogramador.dao.UsuarioDAO;
 import br.com.fabricadeprogramador.entidade.Usuario;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "file:src/main/resources/META-INF/springbeans.xml")
+@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/springbeans.xml")
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class TestUsuarioDAO2 {
 

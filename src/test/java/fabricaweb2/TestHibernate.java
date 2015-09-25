@@ -18,7 +18,7 @@ public class TestHibernate {
 //		// Gerenciador de Entidades
 //		EntityManager em = emf.createEntityManager();
 
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("file:src/main/resources/META-INF/springbeans.xml");
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/springbeans.xml");
 
 		EntityManagerFactory emf = (EntityManagerFactory) ctx.getBean("entityManagerFactory");
 		

@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -17,7 +16,7 @@ import br.com.fabricadeprogramador.service.ServiceException;
 import br.com.fabricadeprogramador.service.UsuarioService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "file:src/main/resources/META-INF/springbeans.xml")
+@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/springbeans.xml")
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class TestUsuarioService {
 
@@ -33,9 +32,9 @@ public class TestUsuarioService {
 	public void testSalvar() throws ServiceException {
 		// Criar um novo usuario
 		Usuario usu = new Usuario();
-		usu.setNome("testService2");
-		usu.setLogin("testService2");
-		usu.setSenha("testService2");
+		usu.setNome("testSalvar");
+		usu.setLogin("testSalvar");
+		usu.setSenha("testSalvar");
 
 		Usuario usuarioSalvo =	usuarioService.salvar(usu);
 		
@@ -47,12 +46,26 @@ public class TestUsuarioService {
 	@Transactional
 	public void testNaoSalvar() throws ServiceException {
 		Usuario usu = new Usuario();
-		usu.setNome("testService");
-		usu.setLogin("testService");
-		usu.setSenha("testService");
+		usu.setNome("testNaoDeveSalvar");
+		usu.setLogin("testNaoDeveSalvar");
+		usu.setSenha("testNaoDeveSalvar");
 
 		usuarioDAO.salvar(usu);
 
 		usuarioService.salvar(usu);
+	}
+	
+	@Test
+	@Transactional
+	public void testExcluir() throws ServiceException{
+		Usuario usu = new Usuario();
+		usu.setNome("testExcluir");
+		usu.setLogin("testExcluir");
+		usu.setSenha("testExcluir");
+		
+		Usuario usuPersistido = usuarioDAO.salvar(usu);
+		
+		usuarioService.excluir(usuPersistido);
+		
 	}
 }

@@ -8,7 +8,7 @@ public class TestSpringBeans {
 
 	@Test
 	public void testContextSpring() {
-		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("file:src/main/resources/META-INF/springbeans.xml");
+		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("file:src/main/webapp/WEB-INF/springbeans.xml");
 
 		BasicDataSource bds = (BasicDataSource) ctx.getBean("dataSource");
 		System.out.println(bds.getPassword());
