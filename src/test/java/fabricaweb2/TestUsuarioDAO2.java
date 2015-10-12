@@ -29,6 +29,7 @@ public class TestUsuarioDAO2 {
 	UsuarioDAO usuarioDAO;
 
 	@Test
+	@Transactional
 	public void testSalvar() {
 		Usuario usu = new Usuario();
 		usu.setLogin("terenciani");
@@ -41,6 +42,7 @@ public class TestUsuarioDAO2 {
 	}
 
 	@Test
+	@Transactional
 	public void testBuscarPorId() {
 		Usuario usuarioTeste = new Usuario();
 		usuarioTeste.setLogin("teste");
@@ -58,6 +60,7 @@ public class TestUsuarioDAO2 {
 
 	
 	@Test
+	@Transactional
 	public void testBuscarTodos() {
 		// Cria um novo usuario
 		Usuario usuarioTeste = new Usuario();

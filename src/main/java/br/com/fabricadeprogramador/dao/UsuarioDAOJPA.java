@@ -35,7 +35,8 @@ public class UsuarioDAOJPA implements UsuarioDAO {
 	@Transactional
 	public void excluir(Usuario usuario) throws DAOException {
 		try {
-			em.remove(usuario);
+			Usuario usuarioManaged = em.getReference(Usuario.class, usuario.getId());
+			em.remove(usuarioManaged);
 		} catch (IllegalArgumentException e) {
 			throw new DAOException("Não foi possível excluir", e);
 		}
@@ -52,16 +53,13 @@ public class UsuarioDAOJPA implements UsuarioDAO {
 
 	@Override
 	public Usuario buscarPorLogin(String login) {
-		Usuario usuario;
 		try {
 			Query q = em.createQuery("select u from Usuario u where u.login=:loginParam");
 			q.setParameter("loginParam", login);
 			q.setMaxResults(1);
-			usuario = (Usuario) q.getSingleResult();
+			return (Usuario) q.getSingleResult();
 		} catch (NoResultException e) {
-			usuario = null;
+			return null;
 		}
-
-		return usuario;
 	}
 }

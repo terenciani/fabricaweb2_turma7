@@ -10,7 +10,7 @@ import br.com.fabricadeprogramador.dao.DAOException;
 import br.com.fabricadeprogramador.dao.UsuarioDAO;
 import br.com.fabricadeprogramador.entidade.Usuario;
 
-@Service ("usuarioService")
+@Service("usuarioService")
 public class UsuarioService {
 
 	@Autowired
@@ -18,35 +18,35 @@ public class UsuarioService {
 	UsuarioDAO usuarioDAO;
 
 	public Usuario salvar(Usuario usuario) throws ServiceException {
-		
-		Usuario usuarioExistente = usuarioDAO.buscarPorLogin(usuario.getLogin());
-		
-		if (usuarioExistente != null){
-			throw new ServiceException("Usuário já existe!");
-			
+
+		if (usuario.getId() == null) {
+			Usuario usuarioExistente = usuarioDAO.buscarPorLogin(usuario.getLogin());
+
+			if (usuarioExistente != null) {
+				throw new ServiceException("Usuário já existe!");
+			}
 		}
 		return usuarioDAO.salvar(usuario);
 	}
-	
-	public void excluir (Usuario usuario) throws ServiceException{
+
+	public void excluir(Usuario usuario) throws ServiceException {
 		try {
 			usuarioDAO.excluir(usuario);
 		} catch (DAOException e) {
 			throw new ServiceException(e);
 		}
 	}
-	
-	public List<Usuario> buscarTodos (){
+
+	public List<Usuario> buscarTodos() {
 		return usuarioDAO.buscarTodos();
 	}
-	
-	public Usuario buscarLogin (String login){
+
+	public Usuario buscarPorLogin(String login) {
 		return usuarioDAO.buscarPorLogin(login);
 	}
-	
-	public Usuario buscarPorId(int id){
+
+	public Usuario buscarPorId(int id) {
 		return usuarioDAO.buscarPorId(id);
 	}
-	
-	
+
 }

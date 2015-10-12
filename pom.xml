@@ -5,6 +5,20 @@
 	<artifactId>fabricaweb2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	
+	<build>
+		<finalName>fabricaweb2</finalName>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
 	<dependencies>
 
 		<dependency>
@@ -72,24 +86,38 @@
 			<artifactId>spring-context</artifactId>
 			<version>4.1.0.RELEASE</version>
 		</dependency>
-		<!-- Integracao com JPA -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>4.1.0.RELEASE</version>
-		</dependency>
-
-		<!-- Integração spring com Junit -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>4.1.0.RELEASE</version>
-		</dependency>
 
 		<!-- Framework Spring Módulo Web - ContextLoaderListener -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+
+		<!--Modulo de segurança do spring -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>4.0.2.RELEASE</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>4.0.2.RELEASE</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>4.0.2.RELEASE</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Integracao com JPA -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
 			<version>4.1.0.RELEASE</version>
 		</dependency>
 
@@ -99,10 +127,26 @@
 			<artifactId>spring-tx</artifactId>
 			<version>4.1.0.RELEASE</version>
 		</dependency>
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
+		</dependency>
+
+		<!-- Integração spring com Junit -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.1.0.RELEASE</version>
 		</dependency>
 
 		<!-- JSF -->
@@ -126,16 +170,5 @@
 
 
 	</dependencies>
-	<build>
-		<finalName>fabricaweb2</finalName>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+
 </project>

@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Usuario implements Serializable {
@@ -16,6 +18,11 @@ public class Usuario implements Serializable {
 	private String nome;
 	private String login;
 	private String senha;
+	private String email;
+
+	@ManyToOne
+	@JoinColumn
+	private Perfil perfil;
 
 	public Integer getId() {
 		return id;
@@ -49,13 +56,31 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((perfil == null) ? 0 : perfil.hashCode());
 		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		return result;
 	}
@@ -69,6 +94,11 @@ public class Usuario implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -84,6 +114,11 @@ public class Usuario implements Serializable {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
+		if (perfil == null) {
+			if (other.perfil != null)
+				return false;
+		} else if (!perfil.equals(other.perfil))
+			return false;
 		if (senha == null) {
 			if (other.senha != null)
 				return false;
@@ -94,7 +129,8 @@ public class Usuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", login=" + login + ", senha=" + senha + "]";
+		return "Usuario [id=" + id + ", nome=" + nome + ", login=" + login + ", senha=" + senha + ", email=" + email
+				+ ", perfil=" + perfil + "]";
 	}
 
 }

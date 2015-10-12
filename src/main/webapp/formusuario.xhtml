@@ -14,27 +14,64 @@
 <body>
 
 	<h:form>
+
+		<h:selectOneMenu value="#{usuarioController.usuario.perfil}"
+			converter="#{perfilConverter}">
+			<f:selectItem itemValue="" itemLabel="Selecione"
+				noSelectionOption="true" />
+			<f:selectItems value="#{perfilController.perfilList}" var="p"
+				itemLabel="#{p.descricao}" />
+		</h:selectOneMenu>
 		Nome:
 		<h:inputText value="#{usuarioController.usuario.nome}" />
 		Login: 
 		<h:inputText value="#{usuarioController.usuario.login}" />
 		Senha:
 		<h:inputText value="#{usuarioController.usuario.senha}" />
+		Email:
+		<h:inputText value="#{usuarioController.usuario.email}">
+			<f:validator validatorId="emailValidator"/>
+		</h:inputText>
 
 		<h:commandButton value="Salvar"
 			actionListener="#{usuarioController.salvar}" />
 	</h:form>
 
-	<h:form>
-		<h:dataTable value="#{usuarioController.usuarioList}" var="usu" border="1"> 
-			<f:facet name="header">
-			Lista de usuarios
-			</f:facet>
-			<h:column>#{usu.id}</h:column>
-			<h:column>#{usu.nome}</h:column>
-			<h:column>#{usu.login}</h:column>
-		</h:dataTable>
+	<h:messages />
 
+	<h:form>
+		<h:dataTable value="#{usuarioController.usuarioList}" var="usu"
+			border="1">
+			<f:facet name="header">
+			Lista de Usuarios
+			</f:facet>
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				#{usu.id}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Perfil</f:facet>
+				#{usu.perfil.descricao} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Nome</f:facet>
+				#{usu.nome} 
+			</h:column>
+			<h:column>
+				<f:facet name="header">Login</f:facet>
+				#{usu.login}
+			</h:column>
+			<h:column>
+				<f:facet name="header">E-mail</f:facet>
+				#{usu.email}
+			</h:column>
+			<h:column>
+				<h:commandButton value="Editar"
+					actionListener="#{usuarioController.editar(usu)}" />
+				<h:commandButton value="excluir"
+					actionListener="#{usuarioController.excluir(usu)}" />
+			</h:column>
+		</h:dataTable>
 	</h:form>
 </body>
 </html>
