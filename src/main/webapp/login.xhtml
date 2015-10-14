@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<head>
+<meta charset="UTF-8" />
+<title>Fabrica WEB</title>
+</head>
+<body>
+
+	<h:outputText value="Usuário Inválido" rendered="#{param.erro}" />
+	<form action="j_spring_security_check" method="post">
+		<h:outputLabel for="login" value="Usuario: *" />
+		<h:inputText id="login" required="true" />
+		<h:outputLabel for="senha" value="Senha: *" />
+		<h:inputText id="senha" required="true" />
+		<h:commandButton value="Autenticar" />
+	</form>
+
+</body>
+</html>

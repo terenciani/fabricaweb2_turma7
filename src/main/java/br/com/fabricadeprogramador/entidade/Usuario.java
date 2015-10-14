@@ -19,6 +19,7 @@ public class Usuario implements Serializable {
 	private String login;
 	private String senha;
 	private String email;
+	private Boolean ativo;
 
 	@ManyToOne
 	@JoinColumn
@@ -70,6 +71,14 @@ public class Usuario implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override
